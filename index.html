@@ -1,0 +1,460 @@
+<!DOCTYPE html>
+<html lang="en" class="dark">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>IslaYield — Tropical Crypto Launchpad on Robinhood Chain</title>
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            darkMode: 'class',
+            theme: {
+                extend: {
+                    colors: {
+                        tropical: {
+                            50: '#f0fdf4',
+                            100: '#dcfce7',
+                            500: '#10b981',
+                            600: '#059669',
+                            800: '#065f46',
+                            900: '#064e3b',
+                            950: '#022c22'
+                        },
+                        sunset: {
+                            500: '#f97316',
+                            600: '#ea580c'
+                        }
+                    }
+                }
+            }
+        }
+    </script>
+    <!-- FontAwesome Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Plus Jakarta Sans', sans-serif;
+        }
+        .hero-pattern {
+            background: linear-gradient(135deg, rgba(2, 44, 34, 0.95) 0%, rgba(6, 78, 59, 0.9) 100%), url('https://images.unsplash.com/photo-1540541338287-41700207dee6?auto=format&fit=crop&w=2000&q=80');
+            background-size: cover;
+            background-position: center;
+        }
+        .glass-card {
+            background: rgba(15, 23, 42, 0.75);
+            backdrop-filter: blur(12px);
+            border: 1px solid rgba(16, 185, 129, 0.2);
+        }
+        .island-card {
+            background: linear-gradient(180deg, rgba(30, 41, 59, 0.8) 0%, rgba(15, 23, 42, 0.9) 100%);
+            border: 1px solid rgba(52, 211, 153, 0.15);
+            transition: all 0.3s ease;
+        }
+        .island-card:hover {
+            transform: translateY(-5px);
+            border-color: rgba(52, 211, 153, 0.5);
+            box-shadow: 0 10px 25px -5px rgba(16, 185, 129, 0.2);
+        }
+    </style>
+</head>
+<body class="bg-slate-950 text-slate-100 min-h-screen flex flex-col selection:bg-tropical-500 selection:text-white">
+
+    <!-- Navbar -->
+    <header class="sticky top-0 z-50 glass-card border-b border-slate-800">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-20 flex items-center justify-between">
+            <div class="flex items-center space-x-3">
+                <div class="w-10 h-10 rounded-xl bg-gradient-to-tr from-tropical-500 to-sunset-500 flex items-center justify-center shadow-lg shadow-tropical-500/30">
+                    <i class="fa-solid fa-island-tropical text-white text-lg"></i>
+                </div>
+                <div>
+                    <span class="text-xl font-extrabold tracking-tight bg-gradient-to-r from-tropical-400 to-emerald-200 bg-clip-text text-transparent">IslaYield</span>
+                    <span class="block text-[10px] tracking-widest uppercase text-emerald-400 font-semibold">Robinhood Chain</span>
+                </div>
+            </div>
+
+            <nav class="hidden md:flex items-center space-x-8 text-sm font-medium">
+                <a href="#explore" class="hover:text-tropical-400 transition-colors">Explore Islands</a>
+                <a href="#launchpad" class="hover:text-tropical-400 transition-colors">Active Launchpad</a>
+                <a href="#governor" class="hover:text-tropical-400 transition-colors">My Island</a>
+                <a href="#staking" class="hover:text-tropical-400 transition-colors">Staking & Yield</a>
+            </nav>
+
+            <div class="flex items-center space-x-4">
+                <div class="hidden lg:flex items-center space-x-2 bg-slate-900 px-3 py-1.5 rounded-full border border-slate-800 text-xs text-emerald-400">
+                    <span class="w-2 h-2 rounded-full bg-emerald-500 animate-pulse"></span>
+                    <span>Robinhood Chain: <strong class="text-white">Live</strong></span>
+                </div>
+                <button onclick="connectWallet()" id="walletBtn" class="bg-gradient-to-r from-tropical-500 to-emerald-600 hover:from-tropical-600 hover:to-emerald-700 text-white font-semibold px-5 py-2.5 rounded-xl shadow-lg shadow-tropical-500/25 transition-all transform active:scale-95 text-sm flex items-center space-x-2">
+                    <i class="fa-solid fa-wallet"></i>
+                    <span id="walletBtnText">Connect Wallet</span>
+                </button>
+            </div>
+        </div>
+    </header>
+
+    <!-- Hero Section -->
+    <section class="hero-pattern py-20 lg:py-32 relative overflow-hidden">
+        <div class="absolute inset-0 bg-gradient-to-b from-transparent via-slate-950/50 to-slate-950"></div>
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10 text-center">
+            <div class="inline-flex items-center space-x-2 bg-tropical-500/10 border border-tropical-500/30 px-4 py-1.5 rounded-full text-tropical-400 text-xs font-semibold mb-6">
+                <i class="fa-solid fa-compass"></i>
+                <span>The First Gamified Tropical Launchpad</span>
+            </div>
+            <h1 class="text-4xl sm:text-6xl lg:text-7xl font-extrabold tracking-tight max-w-4xl mx-auto leading-tight">
+                Build Your Crypto Archipelago on <span class="bg-gradient-to-r from-tropical-400 via-emerald-300 to-sunset-500 bg-clip-text text-transparent">Robinhood Chain</span>
+            </h1>
+            <p class="mt-6 text-lg sm:text-xl text-slate-300 max-w-2xl mx-auto font-normal">
+                Web3 investment meets tropical island simulation game. Stake tokens, construct resort infrastructure, and harvest exclusive token allocations with ultra-low fees.
+            </p>
+            <div class="mt-10 flex flex-col sm:flex-row justify-center items-center space-y-4 sm:space-y-0 sm:space-x-4">
+                <a href="#launchpad" class="w-full sm:w-auto bg-gradient-to-r from-tropical-500 to-emerald-600 hover:from-tropical-600 hover:to-emerald-700 text-white font-bold px-8 py-4 rounded-xl shadow-xl shadow-tropical-500/30 transition-all text-center">
+                    Explore Islands <i class="fa-solid fa-arrow-right ml-2"></i>
+                </a>
+                <a href="#governor" class="w-full sm:w-auto bg-slate-900/80 hover:bg-slate-800 text-slate-200 border border-slate-700 font-bold px-8 py-4 rounded-xl transition-all text-center">
+                    View My Island
+                </a>
+            </div>
+
+            <!-- Stats Bar -->
+            <div class="mt-16 grid grid-cols-2 md:grid-cols-4 gap-4 max-w-5xl mx-auto">
+                <div class="glass-card p-6 rounded-2xl border border-slate-800 text-center">
+                    <span class="block text-slate-400 text-xs font-semibold uppercase tracking-wider">Total Volume Raised</span>
+                    <span class="text-2xl sm:text-3xl font-extrabold text-tropical-400 mt-1 block">$14.8M</span>
+                </div>
+                <div class="glass-card p-6 rounded-2xl border border-slate-800 text-center">
+                    <span class="block text-slate-400 text-xs font-semibold uppercase tracking-wider">Islands Built (IDOs)</span>
+                    <span class="text-2xl sm:text-3xl font-extrabold text-white mt-1 block">32 Islands</span>
+                </div>
+                <div class="glass-card p-6 rounded-2xl border border-slate-800 text-center">
+                    <span class="block text-slate-400 text-xs font-semibold uppercase tracking-wider">Active Governors</span>
+                    <span class="text-2xl sm:text-3xl font-extrabold text-emerald-400 mt-1 block">18,450</span>
+                </div>
+                <div class="glass-card p-6 rounded-2xl border border-slate-800 text-center">
+                    <span class="block text-slate-400 text-xs font-semibold uppercase tracking-wider">Average Staking APY</span>
+                    <span class="text-2xl sm:text-3xl font-extrabold text-sunset-500 mt-1 block">142.5%</span>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Active Launchpad Section -->
+    <section id="launchpad" class="py-20 bg-slate-950 relative">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex flex-col md:flex-row md:items-end justify-between mb-12">
+                <div>
+                    <span class="text-tropical-400 text-xs font-bold uppercase tracking-widest">Live IDO / IGO</span>
+                    <h2 class="text-3xl sm:text-4xl font-extrabold text-white mt-2">New Islands Ready for Exploration</h2>
+                </div>
+                <p class="text-slate-400 text-sm mt-2 md:mt-0 max-w-md">
+                    Each new project is an independent island in the IslaYield archipelago. Secure your token allocation before the port closes.
+                </p>
+            </div>
+
+            <!-- Grid Project Cards -->
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+                <!-- Project 1 -->
+                <div class="island-card rounded-3xl p-6 relative overflow-hidden flex flex-col justify-between">
+                    <div class="absolute top-4 right-4 bg-emerald-500/20 text-emerald-400 border border-emerald-500/30 text-xs font-bold px-3 py-1 rounded-full">
+                        Live Now
+                    </div>
+                    <div>
+                        <div class="w-14 h-14 rounded-2xl bg-gradient-to-tr from-cyan-500 to-blue-600 flex items-center justify-center text-white text-2xl font-bold shadow-lg mb-6">
+                            🌴
+                        </div>
+                        <h3 class="text-xl font-bold text-white">AquaRealm ($AQUA)</h3>
+                        <p class="text-slate-400 text-xs mt-1">Marine Metaverse GameFi ecosystem powered by Robinhood Chain.</p>
+                        
+                        <div class="mt-6 space-y-3">
+                            <div class="flex justify-between text-xs">
+                                <span class="text-slate-400">Hard Cap Target</span>
+                                <span class="font-bold text-white">$500,000</span>
+                            </div>
+                            <div class="w-full bg-slate-800 rounded-full h-2">
+                                <div class="bg-gradient-to-r from-tropical-500 to-emerald-400 h-2 rounded-full" style="width: 85%"></div>
+                            </div>
+                            <div class="flex justify-between text-xs text-slate-400">
+                                <span>Progress: 85%</span>
+                                <span class="text-emerald-400 font-semibold">$425,000 Raised</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="mt-8 pt-6 border-t border-slate-800/80 flex items-center justify-between">
+                        <div>
+                            <span class="text-[10px] text-slate-400 block uppercase">Token Price</span>
+                            <span class="text-sm font-bold text-white">1 ISLA = 0.05 AQUA</span>
+                        </div>
+                        <button onclick="openParticipateModal('AquaRealm ($AQUA)')" class="bg-tropical-500 hover:bg-tropical-600 text-white font-semibold px-4 py-2.5 rounded-xl text-xs transition-all shadow-md shadow-tropical-500/20">
+                            Visit Island <i class="fa-solid fa-anchor ml-1"></i>
+                        </button>
+                    </div>
+                </div>
+
+                <!-- Project 2 -->
+                <div class="island-card rounded-3xl p-6 relative overflow-hidden flex flex-col justify-between">
+                    <div class="absolute top-4 right-4 bg-amber-500/20 text-amber-400 border border-amber-500/30 text-xs font-bold px-3 py-1 rounded-full">
+                        Coming Soon
+                    </div>
+                    <div>
+                        <div class="w-14 h-14 rounded-2xl bg-gradient-to-tr from-purple-500 to-indigo-600 flex items-center justify-center text-white text-2xl font-bold shadow-lg mb-6">
+                            🌋
+                        </div>
+                        <h3 class="text-xl font-bold text-white">MagmaCity ($MAGMA)</h3>
+                        <p class="text-slate-400 text-xs mt-1">High-energy volcanic city simulation & DeFi yield ecosystem.</p>
+                        
+                        <div class="mt-6 space-y-3">
+                            <div class="flex justify-between text-xs">
+                                <span class="text-slate-400">Hard Cap Target</span>
+                                <span class="font-bold text-white">$750,000</span>
+                            </div>
+                            <div class="w-full bg-slate-800 rounded-full h-2">
+                                <div class="bg-gradient-to-r from-amber-500 to-sunset-500 h-2 rounded-full" style="width: 30%"></div>
+                            </div>
+                            <div class="flex justify-between text-xs text-slate-400">
+                                <span>Starts in:</span>
+                                <span class="text-amber-400 font-semibold">2 Days 14 Hours</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="mt-8 pt-6 border-t border-slate-800/80 flex items-center justify-between">
+                        <div>
+                            <span class="text-[10px] text-slate-400 block uppercase">Whitelisting</span>
+                            <span class="text-sm font-bold text-white">Open for Tier 2+</span>
+                        </div>
+                        <button onclick="alert('Whitelisting is not open yet. Stake your ISLA tokens to level up!')" class="bg-slate-800 hover:bg-slate-700 text-slate-300 font-semibold px-4 py-2.5 rounded-xl text-xs transition-all">
+                            Join Whitelist
+                        </button>
+                    </div>
+                </div>
+
+                <!-- Project 3 -->
+                <div class="island-card rounded-3xl p-6 relative overflow-hidden flex flex-col justify-between">
+                    <div class="absolute top-4 right-4 bg-blue-500/20 text-blue-400 border border-blue-500/30 text-xs font-bold px-3 py-1 rounded-full">
+                        Completed
+                    </div>
+                    <div>
+                        <div class="w-14 h-14 rounded-2xl bg-gradient-to-tr from-emerald-500 to-teal-700 flex items-center justify-center text-white text-2xl font-bold shadow-lg mb-6">
+                            🥥
+                        </div>
+                        <h3 class="text-xl font-bold text-white">CocoFarm ($COCO)</h3>
+                        <p class="text-slate-400 text-xs mt-1">Tropical farming game producing real agricultural yields via tokens.</p>
+                        
+                        <div class="mt-6 space-y-3">
+                            <div class="flex justify-between text-xs">
+                                <span class="text-slate-400">Funds Raised</span>
+                                <span class="font-bold text-emerald-400">$300,000 / $300,000 (100%)</span>
+                            </div>
+                            <div class="w-full bg-slate-800 rounded-full h-2">
+                                <div class="bg-emerald-500 h-2 rounded-full" style="width: 100%"></div>
+                            </div>
+                            <div class="flex justify-between text-xs text-slate-400">
+                                <span>Vesting Status:</span>
+                                <span class="text-white font-semibold">Resort Construction 45%</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="mt-8 pt-6 border-t border-slate-800/80 flex items-center justify-between">
+                        <div>
+                            <span class="text-[10px] text-slate-400 block uppercase">Current ROI</span>
+                            <span class="text-sm font-bold text-emerald-400">+450% (4.5x)</span>
+                        </div>
+                        <button onclick="alert('IDO completed. Go to your dashboard to claim vesting buildings.')" class="bg-slate-800 hover:bg-slate-700 text-slate-300 font-semibold px-4 py-2.5 rounded-xl text-xs transition-all">
+                            Claim Vesting
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Governor's Island Dashboard Simulator -->
+    <section id="governor" class="py-20 bg-slate-900/40 border-y border-slate-900">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center max-w-2xl mx-auto mb-16">
+                <span class="text-tropical-400 text-xs font-bold uppercase tracking-widest">Gamification Feature</span>
+                <h2 class="text-3xl sm:text-4xl font-extrabold text-white mt-2">Your Governor's Island</h2>
+                <p class="text-slate-400 text-sm mt-3">
+                    The larger your ISLA token staking allocation, the more magnificent your tropical island becomes. Monitor building construction and your portfolio yield harvests here.
+                </p>
+            </div>
+
+            <!-- Island Dashboard UI Box -->
+            <div class="glass-card rounded-3xl p-6 sm:p-10 border border-emerald-500/20 max-w-5xl mx-auto">
+                <div class="flex flex-col lg:flex-row items-center justify-between pb-8 border-b border-slate-800 gap-6">
+                    <div class="flex items-center space-x-4">
+                        <div class="w-16 h-16 rounded-2xl bg-gradient-to-tr from-tropical-500 to-emerald-400 flex items-center justify-center text-3xl shadow-lg">
+                            🏝️
+                        </div>
+                        <div>
+                            <div class="flex items-center space-x-2">
+                                <h3 class="text-xl font-bold text-white" id="governorName">Governor #8824</h3>
+                                <span class="bg-tropical-500/20 text-tropical-400 border border-tropical-500/30 text-[10px] px-2.5 py-0.5 rounded-full font-bold">Tier 3: Luxury Resort</span>
+                            </div>
+                            <p class="text-xs text-slate-400 mt-1">Island Status: <span class="text-emerald-400 font-semibold">Thriving & Producing</span></p>
+                        </div>
+                    </div>
+
+                    <div class="flex space-x-4">
+                        <div class="bg-slate-900/90 px-5 py-3 rounded-2xl border border-slate-800 text-center">
+                            <span class="text-[10px] text-slate-400 uppercase font-semibold block">Total Staked ISLA</span>
+                            <span class="text-lg font-bold text-tropical-400">25,000 ISLA</span>
+                        </div>
+                        <div class="bg-slate-900/90 px-5 py-3 rounded-2xl border border-slate-800 text-center">
+                            <span class="text-[10px] text-slate-400 uppercase font-semibold block">Harvest Yield</span>
+                            <span class="text-lg font-bold text-sunset-500">1,240 $COCO</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Building Progress / Vesting List -->
+                <div class="mt-8">
+                    <h4 class="text-sm font-bold text-slate-300 uppercase tracking-wider mb-4">Active Construction & Vesting Progress</h4>
+                    
+                    <div class="space-y-4">
+                        <div class="bg-slate-900/80 p-4 rounded-2xl border border-slate-800 flex flex-col sm:flex-row items-center justify-between gap-4">
+                            <div class="flex items-center space-x-4">
+                                <div class="w-12 h-12 rounded-xl bg-tropical-500/10 text-tropical-400 flex items-center justify-center text-xl">
+                                    🏨
+                                </div>
+                                <div>
+                                    <h5 class="text-sm font-bold text-white">White Sand Beach Resort (AquaRealm Vesting)</h5>
+                                    <p class="text-xs text-slate-400">Construction Completes in: <strong>12 Days</strong></p>
+                                </div>
+                            </div>
+                            <div class="w-full sm:w-48 bg-slate-800 rounded-full h-2.5">
+                                <div class="bg-tropical-500 h-2.5 rounded-full" style="width: 70%"></div>
+                            </div>
+                            <button disabled class="bg-slate-800 text-slate-500 px-4 py-2 rounded-xl text-xs font-semibold cursor-not-allowed">
+                                Under Construction
+                            </button>
+                        </div>
+
+                        <div class="bg-slate-900/80 p-4 rounded-2xl border border-slate-800 flex flex-col sm:flex-row items-center justify-between gap-4">
+                            <div class="flex items-center space-x-4">
+                                <div class="w-12 h-12 rounded-xl bg-amber-500/10 text-amber-400 flex items-center justify-center text-xl">
+                                    ⚓
+                                </div>
+                                <div>
+                                    <h5 class="text-sm font-bold text-white">Marine Logistics Pier (CocoFarm Rewards)</h5>
+                                    <p class="text-xs text-emerald-400 font-semibold">Construction Complete - Ready to Harvest!</p>
+                                </div>
+                            </div>
+                            <div class="w-full sm:w-48 bg-slate-800 rounded-full h-2.5">
+                                <div class="bg-emerald-500 h-2.5 rounded-full" style="width: 100%"></div>
+                            </div>
+                            <button onclick="claimReward()" class="bg-emerald-500 hover:bg-emerald-600 text-white px-5 py-2 rounded-xl text-xs font-semibold shadow-md shadow-emerald-500/20 transition-all">
+                                Claim Harvest Yield
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="bg-slate-950 border-t border-slate-900 py-12 mt-auto">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex flex-col md:flex-row items-center justify-between gap-6">
+            <div class="flex items-center space-x-3">
+                <div class="w-8 h-8 rounded-lg bg-tropical-500 flex items-center justify-center text-white font-bold">
+                    🌴
+                </div>
+                <span class="text-lg font-bold text-white">IslaYield Launchpad</span>
+            </div>
+            <p class="text-xs text-slate-500 text-center">
+                &copy; 2026 IslaYield Protocol. Built on <strong class="text-slate-400">Robinhood Chain</strong>. All rights reserved.
+            </p>
+            <div class="flex space-x-6 text-slate-400 text-sm">
+                <a href="#" class="hover:text-tropical-400"><i class="fa-brands fa-twitter"></i></a>
+                <a href="#" class="hover:text-tropical-400"><i class="fa-brands fa-discord"></i></a>
+                <a href="#" class="hover:text-tropical-400"><i class="fa-brands fa-telegram"></i></a>
+                <a href="#" class="hover:text-tropical-400"><i class="fa-brands fa-github"></i></a>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Modal IDO Participation -->
+    <div id="participateModal" class="fixed inset-0 z-50 flex items-center justify-center bg-black/80 backdrop-blur-sm hidden">
+        <div class="glass-card border border-emerald-500/30 rounded-3xl p-8 max-w-md w-full mx-4 relative">
+            <button onclick="closeParticipateModal()" class="absolute top-6 right-6 text-slate-400 hover:text-white">
+                <i class="fa-solid fa-xmark text-lg"></i>
+            </button>
+            <h3 class="text-xl font-bold text-white mb-2" id="modalTitle">IDO Participation</h3>
+            <p class="text-xs text-slate-400 mb-6">Enter the allocation amount you want to invest in this island via Robinhood Chain.</p>
+            
+            <div class="space-y-4">
+                <div>
+                    <label class="block text-xs font-semibold text-slate-300 mb-2">Allocation Amount (USDC / Robinhood Chain)</label>
+                    <div class="relative">
+                        <input type="number" id="allocAmount" placeholder="100" class="w-full bg-slate-900 border border-slate-800 rounded-xl px-4 py-3 text-white text-sm focus:outline-none focus:border-tropical-500">
+                        <span class="absolute right-4 top-3 text-xs text-slate-400 font-bold">USDC</span>
+                    </div>
+                </div>
+                <div class="bg-slate-900/60 p-4 rounded-xl border border-slate-800/80 text-xs space-y-2">
+                    <div class="flex justify-between text-slate-400">
+                        <span>Estimated Gas Fee:</span>
+                        <span class="text-emerald-400 font-semibold">&lt; $0.001 (Robinhood Chain)</span>
+                    </div>
+                    <div class="flex justify-between text-slate-400">
+                        <span>Required Island Tier:</span>
+                        <span class="text-white font-semibold">Tier 1 (Min 5,000 ISLA Staked)</span>
+                    </div>
+                </div>
+                <button onclick="submitAllocation()" class="w-full bg-gradient-to-r from-tropical-500 to-emerald-600 hover:from-tropical-600 hover:to-emerald-700 text-white font-bold py-3.5 rounded-xl shadow-lg shadow-tropical-500/30 text-sm transition-all">
+                    Confirm Island Allocation
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <!-- JavaScript interactivity -->
+    <script>
+        let isConnected = false;
+
+        function connectWallet() {
+            const btnText = document.getElementById('walletBtnText');
+            if (!isConnected) {
+                isConnected = true;
+                btnText.innerText = "0x892F...3a19";
+                document.getElementById('walletBtn').classList.remove('from-tropical-500', 'to-emerald-600');
+                document.getElementById('walletBtn').classList.add('bg-slate-800', 'border', 'border-tropical-500/50');
+                alert('Wallet successfully connected to Robinhood Chain!');
+            } else {
+                alert('Wallet is already connected.');
+            }
+        }
+
+        function openParticipateModal(projectName) {
+            if (!isConnected) {
+                alert('Please connect your wallet first!');
+                return;
+            }
+            document.getElementById('modalTitle').innerText = `Participate: ${projectName}`;
+            document.getElementById('participateModal').classList.remove('hidden');
+        }
+
+        function closeParticipateModal() {
+            document.getElementById('participateModal').classList.add('hidden');
+        }
+
+        function submitAllocation() {
+            const amount = document.getElementById('allocAmount').value;
+            if(!amount || amount <= 0) {
+                alert('Please enter a valid allocation amount!');
+                return;
+            }
+            alert(`Successfully secured an allocation worth $${amount}! A new construction island is being built on your dashboard.`);
+            closeParticipateModal();
+        }
+
+        function claimReward() {
+            alert('Success! Yield worth 1,240 $COCO successfully claimed to your Robinhood Chain wallet!');
+        }
+    </script>
+</body>
+</html>
